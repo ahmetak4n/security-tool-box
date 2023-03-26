@@ -16,15 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - uses: chainguard-dev/actions/melange-build@main
-        with: 
-          multi-config: ${{ github.workspace }}/tools/semgrep.yaml
-          archs: x86_64
+      - uses: chainguard-dev/actions/setup-melange@main
+      
+      - uses: chainguard-dev/actions/melange-keygen@main
+      
+      - shell: bash
+        run: |
+          ls ${{ github.workspace }}
           
       - uses: chainguard-dev/actions/melange-build@main
         with: 
-          multi-config: ${{ github.workspace }}/tools/checkov.yaml
+          multi-config: tools/semgrep.yaml,tools/checkov.yaml
           archs: x86_64
+          signing-key-path: ${{ github.workspace }}/melange.rsa
+          repository-path: ${{ github.workspace }}/packages
           
       - uses: chainguard-dev/actions/apko-build@main
         with:
