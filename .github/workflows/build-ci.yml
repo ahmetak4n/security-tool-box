@@ -27,8 +27,8 @@ jobs:
         with:
           config: ''
           multi-config: ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/checkov.yaml
-          archs: amd64
-          sign-with-temporary-key: true
+          archs: x86_64
+          sign-with-temporary-key: false
           signing-key-path: ${{ github.workspace }}/melange.rsa
           repository-path: ${{ github.workspace }}/packages
           repository-append: ${{ github.workspace }}/packages
@@ -41,6 +41,6 @@ jobs:
         uses: distroless/actions/apko-build@main
         with:
           config: apko.yaml
-          archs: amd64
-          tag: ghcr.io/ahmetak4n/security-tool-box:latest
-          repository-append: ${{ github.workspace }}/packages
+          archs: x86_64
+          use-docker-mediatypes: false
+          tag: ghcr.io/ahmetak4n/security-tool-box
