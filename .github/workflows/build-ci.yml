@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Build Security Tool Box
-    runs-on: ubuntu-16-core
+    runs-on: ubuntu-latest
     
     permissions:
       packages: write
