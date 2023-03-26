@@ -38,5 +38,6 @@ jobs:
         with:
           config: apko.yaml
           archs: x86_64
+          repository-append: ${{ github.workspace }}/packages
           use-docker-mediatypes: false
           tag: ghcr.io/ahmetak4n/security-tool-box
