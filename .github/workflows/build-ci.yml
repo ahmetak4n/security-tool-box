@@ -29,7 +29,7 @@ jobs:
           
       - uses: chainguard-dev/actions/melange-build-pkg@main
         with: 
-          config: ${{ github.workspace }}/tools/checkov.yaml,${{ github.workspace }}/tools/semgrep.yaml
+          config: ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/checkov.yaml
           archs: x86_64
           signing-key-path: ${{ github.workspace }}/melange.rsa
           keyring-append: ${{ github.workspace }}/melange.rsa
