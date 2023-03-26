@@ -11,22 +11,26 @@ on:
 jobs:
   
   build:
-    name: Build APK Package
+    name: build and push
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkot repository
+        uses: actions/checkout@v3
       
-      - uses: chainguard-dev/actions/setup-melange@main
+      - name: setup melange
+        uses: chainguard-dev/actions/setup-melange@main
       
-      - uses: chainguard-dev/actions/melange-keygen@main
+      - name: melange key generation
+        uses: chainguard-dev/actions/melange-keygen@main
         with:
           signing-key-path: ${{ github.workspace }}/melange.rsa
           install-public-key: true
           
-      - name: ASDF
+      - name: melange apk build
         shell: bash
         run: |
           melange build tools/semgrep.yaml --arch amd64 --signing-key melange.rsa
+          melange build tools/checkov.yaml --arch amd64 --signing-key melange.rsa --repository-append packages
           
-          ls -al
+          ls
