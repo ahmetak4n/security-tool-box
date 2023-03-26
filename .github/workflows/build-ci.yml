@@ -9,16 +9,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  
+
   build:
     name: build and push
     runs-on: ubuntu-latest
+    
+    permissions:
+      packages: write
+      contents: read
 
     steps:
       - name: checkot repository
         uses: actions/checkout@v3
         
-      - name: setup melange
+      - name: build apk packages
         uses: chainguard-dev/actions/melange-build@main
         with:
           config: ''
@@ -32,3 +36,9 @@ jobs:
           namespace: ''
           empty-workspace: false
           workdir: ''
+        
+      - name: build and push image
+        uses: chainguard-dev/actions/apko-build@main
+        with:
+          config: apko.yaml
+          tag: ghcr.io/ahmetak4n/security-tool-box
