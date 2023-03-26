@@ -1,0 +1,34 @@
+name: build-ci
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Security Tool Box
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: chainguard-dev/actions/melange-keygen@main
+      
+      - uses: chainguard-dev/actions/melange-build@main
+        with: 
+          multi-config: ${{ github.workspace }}/tools/checkov.yaml, ${{ github.workspace }}/tools/semgrep.yaml
+          archs: x86_64
+          signing-key-path: ${{ github.workspace }}/melange.rsa
+          repository-path: ${{ github.workspace }}/packages
+          
+      - uses: chainguard-dev/actions/apko-build@main
+        with:
+          config: apko.yaml
+          tag: ghcr.io/ahmetak4n/security-tool-box:latest
+
+
+
