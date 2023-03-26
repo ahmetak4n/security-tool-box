@@ -11,7 +11,11 @@ on:
 jobs:
   build:
     name: Build Security Tool Box
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16-core
+    
+    permissions:
+      packages: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v3
@@ -19,15 +23,19 @@ jobs:
       - uses: chainguard-dev/actions/setup-melange@main
       
       - uses: chainguard-dev/actions/melange-keygen@main
+        with:
+          signing-key-path: ${{ github.workspace }}/melange.rsa
+          install-public-key: true
       
       - shell: bash
         run: |
           ls ${{ github.workspace }}
           
-      - uses: chainguard-dev/actions/melange-build@main
+      - uses: chainguard-dev/actions/melange-build-pkg@main
         with: 
           multi-config: tools/semgrep.yaml,tools/checkov.yaml
           archs: x86_64
+          sign-with-temporary-key: false
           signing-key-path: ${{ github.workspace }}/melange.rsa
           repository-path: ${{ github.workspace }}/packages
           
