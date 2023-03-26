@@ -41,4 +41,5 @@ jobs:
         uses: chainguard-dev/actions/apko-build@main
         with:
           config: apko.yaml
-          tag: ghcr.io/ahmetak4n/security-tool-box
+          archs: x86_64
+          tag: ghcr.io/ahmetak4n/security-tool-box:latest
