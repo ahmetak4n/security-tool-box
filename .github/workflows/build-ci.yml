@@ -36,12 +36,6 @@ jobs:
           namespace: ''
           empty-workspace: false
           workdir: ''
-        
-      - name: ASD
-        run: |
-          sudo chown -R runner:runner ${{ github.workspace }}/melange.rsa.pub
-          ls -al
-          ls -al packages/
           
       - name: build and push image
         uses: distroless/actions/apko-publish@main
@@ -50,5 +44,4 @@ jobs:
           archs: x86_64
           debug: true
           tag: ghcr.io/ahmetak4n/security-tool-box:latest
-          keyring-append: ${{ github.workspace }}/melange.rsa.pub
           repository-append: ${{ github.workspace }}/packages
