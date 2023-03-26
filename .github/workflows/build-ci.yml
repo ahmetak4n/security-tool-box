@@ -9,37 +9,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  
   build:
-    name: Build Security Tool Box
+    name: Build APK Package
     runs-on: ubuntu-latest
     
-    permissions:
-      packages: write
-      contents: read
+    container: cgr.dev/chainguard/melange
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository Code
+        uses: actions/checkout@v3
       
-      - uses: chainguard-dev/actions/setup-melange@main
-      
-      - uses: chainguard-dev/actions/melange-keygen@main
-        with:
-          signing-key-path: ${{ github.workspace }}/melange.rsa
-          install-public-key: true
-          
-      - name: melange build packages
-        shell: bash
+      - name: Melange Key Generation
         run: |
-          sudo melange build tools/semgrep.yaml --arch amd64 --signing-key melange.rsa
+          melange keygen
           
           ls -al
-          
-          sudo melange build tools/checkov.yaml --arch amd64 --signing-key melange.rsa --repository-append packages
-          
-      - uses: chainguard-dev/actions/apko-build@main
-        with:
-          config: apko.yaml
-          tag: ghcr.io/ahmetak4n/security-tool-box:latest
-
-
-
+      
