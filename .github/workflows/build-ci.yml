@@ -38,10 +38,11 @@ jobs:
           workdir: ''
           
       - name: build and push image
-        uses: distroless/actions/apko-publish@main
+        uses: distroless/actions/apko-build@main
         with:
           config: apko.yaml
           archs: x86_64
           debug: true
+          use-docker-mediatypes: false
           tag: ghcr.io/ahmetak4n/security-tool-box:latest
           repository-append: ${{ github.workspace }}/packages
