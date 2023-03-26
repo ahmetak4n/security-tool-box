@@ -16,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - uses: chainguard-dev/actions/setup-melange@main
+      
       - uses: chainguard-dev/actions/melange-keygen@main
       
       - uses: chainguard-dev/actions/melange-build@main
