@@ -1,0 +1,33 @@
+package:
+  name: checkov
+  version: 2.3.105
+  epoch: 0
+  description: "static code and composotion analysis tool for IaC"
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - python3
+
+environment:
+  contents:
+    repositories:
+      - https://packages.wolfi.dev/os
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    packages:
+      - wolfi-base
+      - ca-certificates-bundle
+      - python3
+      - py3-pip
+
+pipeline:
+  - uses: fetch
+    with:
+      uri: https://files.pythonhosted.org/packages/ea/2b/2b0826f1f0e8c20837658c7648b94e43a21109f6be8d764cad301465fae1/checkov-${{package.version}}-py3-none-any.whl
+      expected-sha256: 02cee911c2211b980b3e4b9cc25ab8d448295700e13ba88e623a2e297f83ed1d
+      extract: false
+  - runs: |
+      pip3 install --prefix=/usr --root="${{targets.destdir}}" checkov-${{package.version}}-py3-none-any.whl
+  - uses: strip
+
