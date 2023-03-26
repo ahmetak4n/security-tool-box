@@ -17,20 +17,18 @@ jobs:
     steps:
       - name: checkot repository
         uses: actions/checkout@v3
-      
+        
       - name: setup melange
-        uses: chainguard-dev/actions/setup-melange@main
-      
-      - name: melange key generation
-        uses: chainguard-dev/actions/melange-keygen@main
+        uses: chainguard-dev/actions/melange-build@main
         with:
+          config: ''
+          multi-config: ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/checkov.yaml
+          archs: amd64
+          sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
-          install-public-key: true
-          
-      - name: melange apk build
-        shell: bash
-        run: |
-          melange build tools/semgrep.yaml --arch amd64 --signing-key melange.rsa
-          melange build tools/checkov.yaml --arch amd64 --signing-key melange.rsa --repository-append packages
-          
-          ls
+          repository-path: ${{ github.workspace }}/packages
+          repository-append: ${{ github.workspace }}/packages
+          keyring-append: ''
+          namespace: ''
+          empty-workspace: false
+          workdir: ''
