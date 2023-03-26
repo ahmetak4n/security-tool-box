@@ -27,15 +27,13 @@ jobs:
           signing-key-path: ${{ github.workspace }}/melange.rsa
           install-public-key: true
           
-      - uses: chainguard-dev/actions/melange-build-pkg@main
-        with: 
-          config: ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/checkov.yaml
-          archs: x86_64
-          signing-key-path: ${{ github.workspace }}/melange.rsa
-          keyring-append: ${{ github.workspace }}/melange.rsa
-          repository-path: ${{ github.workspace }}/packages
-          repository-append: ${{ github.workspace }}/packages
-          workspace-dir: ${{ github.workspace }}
+      - name: melange build packages
+        shell: bash
+        run: |
+          sudo melange build tools/semgrep.yaml --arch amd64 --signing-key melange.rsa
+          sudo melange build tools/checkov.yaml --arch amd64 --signing-key melange.rsa --repository-append packages
+          
+          ls -al
           
       - uses: chainguard-dev/actions/apko-build@main
         with:
