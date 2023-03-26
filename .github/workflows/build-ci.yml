@@ -38,6 +38,7 @@ jobs:
         with:
           config: apko.yaml
           archs: x86_64
-          repository-append: ${{ github.workspace }}/packages
+          tag: ghcr.io/ahmetak4n/security-tool-box:x86_64
+          repository-append: packages
+          keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
-          tag: ghcr.io/ahmetak4n/security-tool-box
