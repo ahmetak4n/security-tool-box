@@ -35,7 +35,6 @@ jobs:
         with: 
           config: tools/checkov.yaml
           archs: x86_64
-          sign-with-temporary-key: false
           signing-key-path: ${{ github.workspace }}/melange.rsa
           repository-path: ${{ github.workspace }}/packages
       
@@ -43,9 +42,8 @@ jobs:
         with: 
           config: tools/semgrep.yaml
           archs: x86_64
-          sign-with-temporary-key: false
           signing-key-path: ${{ github.workspace }}/melange.rsa
-          repository-path: ${{ github.workspace }}/packages
+          repository-append: ${{ github.workspace }}/packages
           
       - uses: chainguard-dev/actions/apko-build@main
         with:
