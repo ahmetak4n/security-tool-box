@@ -27,7 +27,7 @@ jobs:
         with:
           config: ''
           multi-config: ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/checkov.yaml
-          archs: x86_64
+          archs: x86_64, amd64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
           repository-path: ${{ github.workspace }}/packages
@@ -41,5 +41,5 @@ jobs:
         uses: chainguard-dev/actions/apko-build@main
         with:
           config: apko.yaml
-          archs: x86_64
+          archs: x86_64, amd64
           tag: ghcr.io/ahmetak4n/security-tool-box:latest
