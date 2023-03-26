@@ -13,10 +13,6 @@ jobs:
   build:
     name: build and push
     runs-on: ubuntu-latest
-    
-    permissions:
-      packages: write
-      contents: read
 
     steps:
       - name: checkot repository
@@ -28,7 +24,7 @@ jobs:
           config: ''
           multi-config: ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/checkov.yaml
           archs: x86_64
-          sign-with-temporary-key: false
+          sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
           repository-path: ${{ github.workspace }}/packages
           repository-append: ${{ github.workspace }}/packages
