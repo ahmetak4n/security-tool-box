@@ -13,16 +13,20 @@ jobs:
   build:
     name: Build APK Package
     runs-on: ubuntu-latest
-    
-    container: cgr.dev/chainguard/melange
 
     steps:
-      - name: Checkout Repository Code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       
-      - name: Melange Key Generation
+      - uses: chainguard-dev/actions/setup-melange@main
+      
+      - uses: chainguard-dev/actions/melange-keygen@main
+        with:
+          signing-key-path: ${{ github.workspace }}/melange.rsa
+          install-public-key: true
+          
+      - name: ASDF
+        shell: bash
         run: |
-          melange keygen
+          melange build tools/semgrep.yaml --arch amd64 --signing-key melange.rsa
           
           ls -al
-      
