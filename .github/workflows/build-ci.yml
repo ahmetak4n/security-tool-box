@@ -31,9 +31,10 @@ jobs:
         shell: bash
         run: |
           sudo melange build tools/semgrep.yaml --arch amd64 --signing-key melange.rsa
-          sudo melange build tools/checkov.yaml --arch amd64 --signing-key melange.rsa --repository-append packages
           
           ls -al
+          
+          sudo melange build tools/checkov.yaml --arch amd64 --signing-key melange.rsa --repository-append packages
           
       - uses: chainguard-dev/actions/apko-build@main
         with:
