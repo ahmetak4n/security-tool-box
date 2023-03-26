@@ -39,6 +39,7 @@ jobs:
         
       - name: ASD
         run: |
+          sudo chown -R runner:runner ${{ github.workspace }}/melange.rsa.pub
           ls -al
           ls -al packages/
           
