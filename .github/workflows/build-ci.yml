@@ -34,7 +34,7 @@ jobs:
           workdir: ''
           
       - name: build and push image
-        uses: distroless/actions/apko-build@main
+        uses: distroless/actions/apko-publish@main
         with:
           config: apko.yaml
           archs: x86_64
