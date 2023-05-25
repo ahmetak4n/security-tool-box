@@ -5,6 +5,7 @@ contents:
     - https://packages.wolfi.dev/os
   packages:
     # base
+    - bash
     - wolfi-base
     # development
     - git
