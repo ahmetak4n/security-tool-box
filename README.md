@@ -2,24 +2,32 @@
 
 Security Tool Box is a container image that it contains a bunch of security tools. We are providing two different images.
 STB RED for red teamss and STB GREEN for devsecops teams.
-## STB RED 
+# stb red 
 It is useful for security testing. Small and easy to use. You just need docker to use. It contains following tools:
-- **Development**
+- **development**
   - Git
   - Pip3
   - Python 3.11
-- **SBOM**
+- **sbom**
   - Syft
-- **K8S & Container Security**
+- **k8s & container security**
   - Grype
   - Trivy
-- **Reconnaissance**
+- **reconnaissance**
   - Nmap
   - Amass
   - Nuclei
   - ExploitDB
 
-## STB GREEN 
+## usage
+```bash
+docker pull ghcr.io/ahmetak4n/security-tool-box:stb-red
+docker run --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4n/security-tool-box:stb-red /bin/bash
+
+nmap -h
+```
+
+# STB GREEN 
 It is a sub set of STB RED, but it more small and focused application security. You can find bunch of tool that useful for DevSecOps. It contains following tools:
 - **Development**
   - Git
@@ -30,3 +38,11 @@ It is a sub set of STB RED, but it more small and focused application security. 
 - **K8S & Container Security**
   - Grype
   - Trivy
+
+## usage
+```bash
+docker pull ghcr.io/ahmetak4n/security-tool-box:stb-green
+docker run --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4n/security-tool-box:stb-green /bin/bash
+
+grype -h
+```
