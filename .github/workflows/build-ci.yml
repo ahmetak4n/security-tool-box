@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  build:
+  red-build:
     name: build and push
     runs-on: ubuntu-latest
     
@@ -26,7 +26,7 @@ jobs:
         uses: chainguard-dev/actions/melange-build@main
         with:
           config: ''
-          multi-config: ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/checkov.yaml
+          multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml, ${{ github.workspace }}/tools/nmap.yaml, ${{ github.workspace }}/tools/nuclei.yaml
           archs: x86_64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
@@ -40,9 +40,33 @@ jobs:
       - name: build and push image
         uses: distroless/actions/apko-publish@main
         with:
-          config: apko.yaml
+          config: stb-red.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:x86_64
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red
           repository-append: packages
           keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
+
+  green-build:
+    name: build and push
+    runs-on: ubuntu-latest
+    
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - name: checkot repository
+        uses: actions/checkout@v3
+        
+      - name: build and push image
+        uses: distroless/actions/apko-publish@main
+        with:
+          config: stb-green.yaml
+          archs: x86_64
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
+          repository-append: packages
+          keyring-append: melange.rsa.pub
+          use-docker-mediatypes: false
+
+

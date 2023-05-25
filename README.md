@@ -5,14 +5,18 @@ Security Tool Box is a container image that it has been builded via apko and mel
 It contains following tools:
 - **Development**
   - Git
-  - Python 3.11
   - Pip3
-- **Static Application Security Testing**
-  - Semgrep
-- **Container Security**
+  - Python 3.11
+- **SBOM**
+  - Syft
+- **K8S & Container Security**
   - Grype
   - Trivy
-- **Software Bill of Material**
-  - Syft
-- **IaC**
-  - Checkov
+- **Network Scanner**
+  - Nmap
+- **Vulnerability Scanner**
+  - Nuclei
+- **Information Gathering**
+  - Amass
+- **Exploit Database**
+  - ExploitDB

@@ -1,0 +1,27 @@
+package:
+  name: nmap
+  version: 7.93
+  epoch: 0
+  description: "network discovery and security auditing tool"
+  copyright:
+    - license: GPL-2.0
+
+environment:
+  contents:
+    repositories:
+      - https://packages.wolfi.dev/os
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    packages:
+      - wolfi-base
+      - build-base
+
+pipeline:
+  - uses: fetch 
+    with: 
+      uri: https://nmap.org/dist/nmap-${{package.version}}.tar.bz2
+      expected-sha256: 55bcfe4793e25acc96ba4274d8c4228db550b8e8efd72004b38ec55a2dd16651  
+  - uses: autoconf/configure
+  - uses: autoconf/make
+  - uses: autoconf/make-install
+

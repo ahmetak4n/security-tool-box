@@ -1,0 +1,23 @@
+package:
+  name: nuclei
+  version: 2.9.4
+  epoch: 0
+  description: "yaml based vulnerability scanner"
+  copyright:
+    - license: MIT
+
+environment:
+  contents:
+    repositories:
+      - https://packages.wolfi.dev/os
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    packages:
+      - go
+
+pipeline:
+  - uses: go/install
+    with:
+      package: github.com/projectdiscovery/nuclei/v2/cmd/nuclei
+      version: v${{package.version}}
+
