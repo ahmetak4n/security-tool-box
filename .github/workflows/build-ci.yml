@@ -11,7 +11,7 @@ on:
 jobs:
 
   red-build:
-    name: build and push
+    name: stb red
     runs-on: ubuntu-latest
     
     permissions:
@@ -48,7 +48,7 @@ jobs:
           use-docker-mediatypes: false
 
   green-build:
-    name: build and push
+    name: stb green
     runs-on: ubuntu-latest
     
     permissions:
@@ -58,6 +58,20 @@ jobs:
     steps:
       - name: checkot repository
         uses: actions/checkout@v3
+        
+      - name: build apk packages
+        uses: chainguard-dev/actions/melange-build@main
+        with:
+          config: ''
+          archs: x86_64
+          sign-with-temporary-key: true
+          signing-key-path: ${{ github.workspace }}/melange.rsa
+          repository-path: ${{ github.workspace }}/packages
+          repository-append: ${{ github.workspace }}/packages
+          keyring-append: ''
+          namespace: ''
+          empty-workspace: false
+          workdir: ''
         
       - name: build and push image
         uses: distroless/actions/apko-publish@main
