@@ -66,8 +66,6 @@ jobs:
           archs: x86_64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
-          repository-path: ${{ github.workspace }}/packages
-          repository-append: ${{ github.workspace }}/packages
           keyring-append: ''
           namespace: ''
           empty-workspace: false
