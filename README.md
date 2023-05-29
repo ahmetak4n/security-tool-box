@@ -8,6 +8,8 @@ It is useful for security testing. Small and easy to use. You just need docker t
   - Git
   - Pip3
   - Python 3.11
+- **sast**
+  - semgrep
 - **sbom**
   - Syft
 - **k8s & container security**
@@ -18,6 +20,10 @@ It is useful for security testing. Small and easy to use. You just need docker t
   - Amass
   - Nuclei
   - ExploitDB
+- **credential access**
+  - jwt-tool
+- **exfiltration**
+  - sqlmap 
 
 ## usage
 ```bash
@@ -30,15 +36,17 @@ docker run --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4n/security-to
 nmap -h
 ```
 
-# STB GREEN 
+# stb green 
 It is a sub set of STB RED, but it more small and focused application security. You can find bunch of tool that useful for DevSecOps. It contains following tools:
-- **Development**
+- **development**
   - Git
   - Pip3
   - Python 3.11
-- **SBOM**
+- **sast
+  - semgrep
+- **sbom**
   - Syft
-- **K8S & Container Security**
+- **k8s & container security**
   - Grype
   - Trivy
 
