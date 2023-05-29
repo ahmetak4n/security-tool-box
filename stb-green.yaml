@@ -11,6 +11,8 @@ contents:
     - git
     - py3-pip
     - python3
+    # sast
+    - semgrep
     # sbom
     - syft
     # k8s & container security
@@ -24,5 +26,9 @@ accounts:
     - username: nonroot
       uid: 65532
   run-as: nonroot
+paths:
+  - path: /opt/venvs/semgrep
+    type: directory
+    permissions: 0o777
 archs:
   - x86_64

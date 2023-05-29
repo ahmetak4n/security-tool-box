@@ -11,6 +11,8 @@ contents:
     - git
     - py3-pip
     - python3
+    # sast
+    - semgrep
     # sbom
     - syft
     # k8s & container security
@@ -21,6 +23,10 @@ contents:
     - amass
     - nuclei
     - exploitdb
+    # credential access
+    - jwt-tool
+    # exfiltration
+    - sqlmap
 accounts:
   groups:
     - groupname: nonroot
@@ -31,6 +37,15 @@ accounts:
   run-as: nonroot
 paths:
   - path: /opt/exploitdb
+    type: directory
+    permissions: 0o777
+  - path: /opt/venvs/semgrep
+    type: directory
+    permissions: 0o777
+  - path: /opt/venvs/jwt-tool
+    type: directory
+    permissions: 0o777
+  - path: /opt/venvs/sqlmap
     type: directory
     permissions: 0o777
 archs:
