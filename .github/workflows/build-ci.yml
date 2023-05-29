@@ -29,7 +29,9 @@ jobs:
         uses: chainguard-dev/actions/melange-build@main
         with:
           config: ''
-          multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml, ${{ github.workspace }}/tools/nmap.yaml, ${{ github.workspace }}/tools/nuclei.yaml
+          multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml,
+            ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/nmap.yaml, ${{ github.workspace }}/tools/nuclei.yaml,
+            ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/sqlmap.yaml, 
           archs: x86_64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
@@ -62,11 +64,20 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
         
-      - name: setup melange
-        uses: chainguard-dev/actions/setup-melange@main
-      
-      - name: create key
-        uses: chainguard-dev/actions/melange-keygen@main
+      - name: build apk packages
+        uses: chainguard-dev/actions/melange-build@main
+        with:
+          config: ''
+          multi-config: ${{ github.workspace }}/tools/semgrep.yaml 
+          archs: x86_64
+          sign-with-temporary-key: true
+          signing-key-path: ${{ github.workspace }}/melange.rsa
+          repository-path: ${{ github.workspace }}/packages
+          repository-append: ${{ github.workspace }}/packages
+          keyring-append: ''
+          namespace: ''
+          empty-workspace: false
+          workdir: ''
         
       - name: build and push image
         uses: distroless/actions/apko-publish@main
