@@ -42,7 +42,7 @@ It is a sub set of STB RED, but it more small and focused application security. 
   - Git
   - Pip3
   - Python 3.11
-- **sast
+- **sast**
   - semgrep
 - **sbom**
   - Syft
