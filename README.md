@@ -20,6 +20,7 @@ It is useful for security testing. Small and easy to use. You just need docker t
   - Amass
   - Nuclei
   - ExploitDB
+  - Gobuster
 - **credential access**
   - jwt-tool
 - **exfiltration**
