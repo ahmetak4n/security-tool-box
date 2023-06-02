@@ -8,7 +8,6 @@ package:
   dependencies:
     runtime:
       - python3
-
 environment:
   contents:
     repositories:
@@ -18,7 +17,6 @@ environment:
     packages:
       - python3
       - wolfi-base
-
 pipeline:
   - uses: git-checkout
     with:
@@ -29,4 +27,4 @@ pipeline:
       mkdir -p ${{targets.destdir}}/opt/venvs/sqlmap
       mv sqlmap ${{targets.destdir}}/opt/venvs && cd ${{targets.destdir}}/opt/venvs/sqlmap
       mkdir -p ${{targets.destdir}}/usr/bin && ln -s /opt/venvs/sqlmap/sqlmap.py ${{targets.destdir}}/usr/bin/sqlmap
-
+  - uses: strip
