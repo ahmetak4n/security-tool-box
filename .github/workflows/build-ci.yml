@@ -31,7 +31,7 @@ jobs:
           config: ''
           multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml,
             ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/nmap.yaml, ${{ github.workspace }}/tools/nuclei.yaml,
-            ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/sqlmap.yaml, 
+            ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/sqlmap.yaml, ${{ github.workspace }}/tools/gobuster.yaml 
           archs: x86_64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
