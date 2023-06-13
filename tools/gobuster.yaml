@@ -1,10 +1,10 @@
 package:
-  name: nuclei
-  version: 2.9.4
+  name: gobuster
+  version: 3.5.0
   epoch: 0
-  description: "yaml based vulnerability scanner"
+  description: "a tool used to brute force attack"
   copyright:
-    - license: MIT
+    - license: Apache-2.0
 environment:
   contents:
     repositories:
@@ -16,6 +16,6 @@ environment:
 pipeline:
   - uses: go/install
     with:
-      package: github.com/projectdiscovery/nuclei/v2/cmd/nuclei
+      package: github.com/OJ/gobuster/v3
       version: v${{package.version}}
   - uses: strip

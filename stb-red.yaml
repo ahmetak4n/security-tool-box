@@ -23,6 +23,7 @@ contents:
     - amass
     - nuclei
     - exploitdb
+    - gobuster
     # credential access
     - jwt-tool
     # exfiltration
