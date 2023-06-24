@@ -31,11 +31,12 @@ It is useful for security testing. Small and easy to use. You just need docker t
 docker pull ghcr.io/ahmetak4n/security-tool-box:stb-red
 ```
 ```bash
-docker run --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4n/security-tool-box:stb-red /bin/bash
+docker run --privileged --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4n/security-tool-box:stb-red /bin/bash
 ```
 ```bash
 nmap -h
 ```
+:exclamation: `--privileged` flag is required for use nmap
 
 # stb green 
 It is a sub set of STB RED, but it more small and focused application security. You can find bunch of tool that useful for DevSecOps. It contains following tools:
