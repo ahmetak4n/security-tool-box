@@ -36,7 +36,7 @@ docker run --privileged --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4
 ```bash
 nmap -h
 ```
-:exclamation: `--privileged` flag is required for use nmap
+:exclamation: `--privileged` flag is required for nmap
 
 # stb green 
 It is a sub set of STB RED, but it more small and focused application security. You can find bunch of tool that useful for DevSecOps. It contains following tools:
