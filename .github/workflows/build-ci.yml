@@ -30,8 +30,8 @@ jobs:
         with:
           config: ''
           multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml,
-            ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/nuclei.yaml,
-            ${{ github.workspace }}/tools/semgrep.yaml, ${{ github.workspace }}/tools/sqlmap.yaml, ${{ github.workspace }}/tools/gobuster.yaml 
+            ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/nuclei.yaml, ${{ github.workspace }}/tools/semgrep.yaml, 
+            ${{ github.workspace }}/tools/nuclei.yaml
           archs: x86_64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
@@ -47,7 +47,7 @@ jobs:
         with:
           config: stb-red.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ steps.meta.outputs.version }}
           repository-append: packages
           keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
@@ -84,7 +84,7 @@ jobs:
         with:
           config: stb-green.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ steps.meta.outputs.version }}
           repository-append: packages
           keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
