@@ -47,7 +47,7 @@ jobs:
         with:
           config: stb-red.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ GITHUB_SHA }}
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red
           repository-append: packages
           keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
@@ -84,7 +84,7 @@ jobs:
         with:
           config: stb-green.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ GITHUB_SHA }}
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
           repository-append: packages
           keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
