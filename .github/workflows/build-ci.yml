@@ -15,7 +15,7 @@ jobs:
 
   green-build:
     name: stb green
-    runs-on: alpine-latest
+    runs-on: ubuntu-latest
     
     permissions:
       packages: write
@@ -25,11 +25,17 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
         
+      # will be remove
+      - name: create apk keys folder
+        run: |
+          sudo mkdir -p /etc/apk/keys
+        
       - name: build apk packages
         uses: chainguard-dev/actions/melange-build@main
         with:
           config: ''
-          multi-config: ${{ github.workspace }}/tools/semgrep.yaml 
+          multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml,
+            ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/semgrep.yaml
           archs: x86_64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
@@ -40,12 +46,22 @@ jobs:
           empty-workspace: false
           workdir: ''
         
-      - name: build and push image
+      - name: green build and push image
         uses: distroless/actions/apko-publish@main
         with:
           config: stb-green.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }}
+          repository-append: packages
+          keyring-append: melange.rsa.pub
+          use-docker-mediatypes: false
+      
+      - name: red build and push image
+        uses: distroless/actions/apko-publish@main
+        with:
+          config: stb-red.yaml
+          archs: x86_64
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }}
           repository-append: packages
           keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
