@@ -25,9 +25,13 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
         
-      - uses: chainguard-dev/actions/setup-melange@main
+      - name: melange setup
+        uses: chainguard-dev/actions/setup-melange@main
       
-      - uses: chainguard-dev/actions/melange-keygen@main
+      - name: melange key generate
+        uses: chainguard-dev/actions/melange-keygen@main
+        with:
+          install-public-key: false
         
       - name: build apk packages
         uses: chainguard-dev/actions/melange-build-pkg@main
