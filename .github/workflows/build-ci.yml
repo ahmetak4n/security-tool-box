@@ -13,43 +13,6 @@ on:
 
 jobs:
 
-  red-build:
-    name: stb red
-    runs-on: ubuntu-latest
-    
-    permissions:
-      packages: write
-      contents: read
-
-    steps:
-      - name: checkot repository
-        uses: actions/checkout@v3
-        
-      - name: build apk packages
-        uses: chainguard-dev/actions/melange-build@main
-        with:
-          config: ''
-          multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml, ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/semgrep.yaml
-          archs: x86_64
-          sign-with-temporary-key: true
-          signing-key-path: ${{ github.workspace }}/melange.rsa
-          repository-path: ${{ github.workspace }}/packages
-          repository-append: ${{ github.workspace }}/packages
-          keyring-append: ''
-          namespace: ''
-          empty-workspace: false
-          workdir: ''
-          
-      - name: build and push image
-        uses: distroless/actions/apko-publish@main
-        with:
-          config: stb-red.yaml
-          archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red
-          repository-append: packages
-          keyring-append: melange.rsa.pub
-          use-docker-mediatypes: false
-
   green-build:
     name: stb green
     runs-on: ubuntu-latest
