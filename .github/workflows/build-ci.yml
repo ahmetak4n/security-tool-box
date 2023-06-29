@@ -25,6 +25,8 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
         
+      - uses: chainguard-dev/actions/setup-melange@main
+        
       - name: build apk packages
         uses: chainguard-dev/actions/melange-build@main
         with:
