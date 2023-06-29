@@ -13,8 +13,8 @@ on:
 
 jobs:
 
-  green-build:
-    name: stb green
+  build:
+    name: build
     runs-on: ubuntu-latest
     
     permissions:
@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo mkdir -p /etc/apk/keys
         
-      - name: build apk packages
+      - name: build all apk packages
         uses: chainguard-dev/actions/melange-build@main
         with:
           config: ''
