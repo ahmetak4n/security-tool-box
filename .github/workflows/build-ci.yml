@@ -24,9 +24,14 @@ jobs:
     steps:
       - name: checkot repository
         uses: actions/checkout@v3
+      
+      - name: Print new build number
+        run: |
+          ls -al /etc/apk/keys/
+          sudo mkdir -p /etc/apk/keys
         
       - name: build apk packages
-        uses: chainguard-dev/actions/melange-build@d553334a80d07f12e51056160fd1aeec7b19129b
+        uses: chainguard-dev/actions/melange-build@main
         with:
           config: ''
           multi-config: ${{ github.workspace }}/tools/semgrep.yaml 
