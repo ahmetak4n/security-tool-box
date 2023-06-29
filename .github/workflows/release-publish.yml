@@ -2,7 +2,7 @@ name: release-publish
 
 on:
   release:
-    types: [ released ]
+    types: [ created ]
     
 jobs:
   red-build:
