@@ -15,7 +15,7 @@ jobs:
 
   green-build:
     name: stb green
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     
     permissions:
       packages: write
@@ -24,10 +24,6 @@ jobs:
     steps:
       - name: checkot repository
         uses: actions/checkout@v3
-      
-      - name: create apk keys folder
-        run: |
-          sudo mkdir -p /etc/apk/keys
         
       - name: build apk packages
         uses: chainguard-dev/actions/melange-build@main
