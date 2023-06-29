@@ -25,16 +25,8 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
         
-      - name: melange setup
-        uses: chainguard-dev/actions/setup-melange@main
-      
-      - name: melange key generate
-        uses: chainguard-dev/actions/melange-keygen@main
-        with:
-          install-public-key: false
-        
       - name: build apk packages
-        uses: chainguard-dev/actions/melange-build-pkg@main
+        uses: chainguard-dev/actions/melange-build@d553334a80d07f12e51056160fd1aeec7b19129b
         with:
           config: ''
           multi-config: ${{ github.workspace }}/tools/semgrep.yaml 
