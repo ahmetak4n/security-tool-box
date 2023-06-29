@@ -17,6 +17,11 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
         
+      # will be remove
+      - name: create apk keys folder
+        run: |
+          echo ${{ github.ref }}
+        
       - name: build apk packages
         uses: chainguard-dev/actions/melange-build@main
         with:
