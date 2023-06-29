@@ -27,7 +27,6 @@ jobs:
       
       - name: Print new build number
         run: |
-          ls -al /etc/apk/keys/
           sudo mkdir -p /etc/apk/keys
         
       - name: build apk packages
