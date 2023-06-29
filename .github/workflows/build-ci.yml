@@ -30,8 +30,7 @@ jobs:
         with:
           config: ''
           multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml,
-            ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/nuclei.yaml, ${{ github.workspace }}/tools/semgrep.yaml, 
-            ${{ github.workspace }}/tools/nuclei.yaml
+            ${{ github.workspace }}/tools/jwt-tool.yaml, ${{ github.workspace }}/tools/semgrep.yaml
           archs: x86_64
           sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
