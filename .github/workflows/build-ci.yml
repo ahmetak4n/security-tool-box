@@ -25,7 +25,7 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
       
-      - name: Print new build number
+      - name: create apk keys folder
         run: |
           sudo mkdir -p /etc/apk/keys
         
@@ -35,6 +35,7 @@ jobs:
           config: ''
           multi-config: ${{ github.workspace }}/tools/semgrep.yaml 
           archs: x86_64
+          sign-with-temporary-key: true
           signing-key-path: ${{ github.workspace }}/melange.rsa
           repository-path: ${{ github.workspace }}/packages
           repository-append: ${{ github.workspace }}/packages
