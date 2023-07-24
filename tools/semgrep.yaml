@@ -1,6 +1,6 @@
 package:
   name: semgrep
-  version: 1.22.0
+  version: 1.32.0
   epoch: 0
   description: "lightweiight static code analysis tool"
   copyright:
@@ -20,7 +20,7 @@ environment:
       - wolfi-base
 pipeline:
   - runs: |
-      mkdir -p ${{targets.destdir}}/opt/venvs/semgrep && cd ${{targets.destdir}}/opt/venvs/semgrep
+      mkdir -p "${{targets.destdir}}"/usr/share/app/semgrep && cd "${{targets.destdir}}"/usr/share/app/semgrep
 
       pip3 install pipenv
       export PIPENV_VENV_IN_PROJECT=1
@@ -29,5 +29,5 @@ pipeline:
       SEMGREP_PYTHON_PATH="#!/opt/venvs/semgrep/.venv/bin/python"
       sed -i "1s,.*,$SEMGREP_PYTHON_PATH," .venv/bin/semgrep
 
-      mkdir -p ${{targets.destdir}}/usr/bin && ln -s /opt/venvs/semgrep/.venv/bin/semgrep ${{targets.destdir}}/usr/bin/semgrep
+      mkdir -p "${{targets.destdir}}"/usr/bin && ln -s /usr/share/app/semgrep/.venv/bin/semgrep "${{targets.destdir}}"/usr/bin/semgrep
   - uses: strip

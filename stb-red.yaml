@@ -22,8 +22,8 @@ contents:
     - nmap
     - amass
     - nuclei
-    - exploitdb
     - gobuster
+    - exploitdb
     # credential access
     - jwt-tool
     # exfiltration
@@ -40,11 +40,3 @@ paths:
   - path: /opt/exploitdb
     type: directory
     permissions: 0o777
-  - path: /opt/venvs/semgrep
-    type: directory
-    permissions: 0o777
-  - path: /opt/venvs/jwt-tool
-    type: directory
-    permissions: 0o777
-archs:
-  - x86_64
