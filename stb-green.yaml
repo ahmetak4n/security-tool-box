@@ -26,9 +26,3 @@ accounts:
     - username: nonroot
       uid: 65532
   run-as: nonroot
-paths:
-  - path: /opt/venvs/semgrep
-    type: directory
-    permissions: 0o777
-archs:
-  - x86_64
