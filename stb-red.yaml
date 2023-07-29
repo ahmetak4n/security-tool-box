@@ -20,10 +20,8 @@ contents:
     - trivy
     # reconnaissance
     - nmap
-    - amass
     - nuclei
     - gobuster
-    - exploitdb
     # credential access
     - jwt-tool
     # exfiltration
