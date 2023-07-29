@@ -12,7 +12,7 @@ contents:
     - py3-pip
     - python3
     # sast
-    - semgrep
+    # - semgrep
     # sbom
     - syft
     # k8s & container security
