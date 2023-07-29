@@ -30,20 +30,19 @@ jobs:
         run: |
           sudo mkdir -p /etc/apk/keys
         
-          #- name: build all apk packages
-          #  uses: chainguard-dev/actions/melange-build@main
-          #  with:
-          #    config: ''
-          #    multi-config: ${{ github.workspace }}/tools/amass.yaml, ${{ github.workspace }}/tools/exploitdb.yaml, ${{ github.workspace }}/tools/semgrep.yaml
-          #    archs: x86_64
-          #    sign-with-temporary-key: true
-          #    signing-key-path: ${{ github.workspace }}/melange.rsa
-          #    repository-path: ${{ github.workspace }}/packages
-          #    repository-append: ${{ github.workspace }}/packages
-          #    keyring-append: ''
-          #    namespace: ''
-          #    empty-workspace: false
-          #    workdir: ''
+      - name: build all apk packages
+        uses: chainguard-dev/actions/melange-build@main
+        with:
+          config: ''
+          archs: x86_64
+          sign-with-temporary-key: true
+          signing-key-path: ${{ github.workspace }}/melange.rsa
+          repository-path: ${{ github.workspace }}/packages
+          repository-append: ${{ github.workspace }}/packages
+          keyring-append: ''
+          namespace: ''
+          empty-workspace: false
+          workdir: ''
         
       - name: green build and push image
         uses: distroless/actions/apko-publish@main
