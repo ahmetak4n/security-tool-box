@@ -1,6 +1,6 @@
 package:
   name: amass
-  version: 3.23.2
+  version: 4.1.0
   epoch: 0
   description: "attack surfaces and external asset discovery tools set"
   copyright:
@@ -16,6 +16,11 @@ environment:
 pipeline:
   - uses: go/install
     with:
-      package: github.com/owasp-amass/amass/v3/...
+      package: github.com/owasp-amass/amass/v4/...
       version: v${{package.version}}
   - uses: strip
+update:
+  enabled: true
+  github:
+    strip-prefix: v
+    identifier: owasp-amass/amass
