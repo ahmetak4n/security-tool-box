@@ -30,7 +30,8 @@ jobs:
         run: |
           sudo mkdir -p /etc/apk/keys
        
-      
+      - uses: chainguard-dev/actions/setup-melange@main
+
       - name: melange key generate
         uses: chainguard-dev/actions/melange-keygen@main
 
