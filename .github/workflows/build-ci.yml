@@ -29,21 +29,26 @@ jobs:
       - name: create apk keys folder
         run: |
           sudo mkdir -p /etc/apk/keys
-        
-      - name: build all apk packages
-        uses: chainguard-dev/actions/melange-build@main
-        with:
-          config: ''
-          multi-config: ${{ github.workspace }}/tools/semgrep.yaml
-          archs: x86_64
-          sign-with-temporary-key: true
-          signing-key-path: ${{ github.workspace }}/melange.rsa
-          repository-path: ${{ github.workspace }}/packages
-          repository-append: ${{ github.workspace }}/packages
-          keyring-append: ''
-          namespace: ''
-          empty-workspace: false
-          workdir: ''
+       
+      - uses: chainguard-dev/actions/setup-melange@main
+
+      - name: melange key generate
+        uses: chainguard-dev/actions/melange-keygen@main
+
+      #- name: build all apk packages
+      #  uses: chainguard-dev/actions/melange-build@main
+      #  with:
+      #    config: ''
+      #    multi-config: ${{ github.workspace }}/tools/semgrep.yaml
+      #    archs: x86_64
+      #    sign-with-temporary-key: true
+      #    signing-key-path: ${{ github.workspace }}/melange.rsa
+      #    repository-path: ${{ github.workspace }}/packages
+      #    repository-append: ${{ github.workspace }}/packages
+      #    keyring-append: ''
+      #    namespace: ''
+      #    empty-workspace: false
+      #    workdir: ''
         
       - name: green build and push image
         uses: distroless/actions/apko-publish@main
