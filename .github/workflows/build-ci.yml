@@ -30,4 +30,5 @@ jobs:
         with:
           config: stb-green.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
+          tag: ghcr.io/ahmetak4n/security-tool-box:stbgreen
+          debug: true
