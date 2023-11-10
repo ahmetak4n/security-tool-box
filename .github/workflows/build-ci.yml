@@ -26,9 +26,9 @@ jobs:
         uses: actions/checkout@v3
         
       - name: green build and push image
-        uses: distroless/actions/apko-publish@main
+        uses: distroless/actions/apko-build@main
         with:
           config: stb-green.yaml
           archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stbgreen
-          debug: true
+          tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
+          use-docker-mediatypes: false
