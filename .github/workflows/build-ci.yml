@@ -1,4 +1,4 @@
-name: build-ci
+name: Build 
 
 on:
   push:
@@ -56,18 +56,17 @@ jobs:
           config: stb-green.yaml
           archs: x86_64
           tag: ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }}
-          repository-append: packages
           keyring-append: melange.rsa.pub
           use-docker-mediatypes: false
       
-      - name: red build and push image
-        uses: distroless/actions/apko-publish@main
-        with:
-          config: stb-red.yaml
-          archs: x86_64
-          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }}
-          repository-append: packages
-          keyring-append: melange.rsa.pub
-          use-docker-mediatypes: false
-
-
+            #      - name: red build and push image
+            #        uses: distroless/actions/apko-publish@main
+            #        with:
+            #          config: stb-red.yaml
+            #          archs: x86_64
+            #          tag: ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }}
+            #          repository-append: packages
+            #          keyring-append: melange.rsa.pub
+            #          use-docker-mediatypes: false
+            #
+            #
