@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: green build and push image
-        uses: distroless/actions/apko-build@main
+        uses: distroless/actions/apko-publish@main
         with:
           config: stb-green.yaml
           archs: amd64
