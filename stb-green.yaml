@@ -7,17 +7,20 @@ contents:
     # base
     - bash
     - wolfi-base
-    # development
-    - git
-    - py3-pip
-    - python3
     # sast
     - semgrep
+    - govulncheck
+    # sca
+    - osv-scanner
+    # iac
+    - checkov
     # sbom
+    - bom
     - syft
-    # k8s & container security
+    # container security
     - grype
     - trivy
+    # k8s security
 accounts:
   groups:
     - groupname: nonroot
