@@ -56,8 +56,6 @@ jobs:
           config: stb-green.yaml
           archs: x86_64
           tag: ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }}
-          keyring-append: melange.rsa.pub
-          use-docker-mediatypes: false
       
             #      - name: red build and push image
             #        uses: distroless/actions/apko-publish@main
