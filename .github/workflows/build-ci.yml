@@ -26,15 +26,15 @@ jobs:
         uses: actions/checkout@v3
         
       # will be remove
-      - name: create apk keys folder
-        run: |
-          sudo mkdir -p /etc/apk/keys
-       
-      - uses: chainguard-dev/actions/setup-melange@main
-
-      - name: melange key generate
-        uses: chainguard-dev/actions/melange-keygen@main
-
+      #      - name: create apk keys folder
+      #        run: |
+      #          sudo mkdir -p /etc/apk/keys
+      #       
+      #      - uses: chainguard-dev/actions/setup-melange@main
+      #
+      #      - name: melange key generate
+      #        uses: chainguard-dev/actions/melange-keygen@main
+      #
       #- name: build all apk packages
       #  uses: chainguard-dev/actions/melange-build@main
       #  with:
