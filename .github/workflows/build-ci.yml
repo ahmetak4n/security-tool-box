@@ -29,6 +29,5 @@ jobs:
         uses: distroless/actions/apko-build@main
         with:
           config: stb-green.yaml
-          archs: x86_64
+          archs: amd64
           tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
-          use-docker-mediatypes: false
