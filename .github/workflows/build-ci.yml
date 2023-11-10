@@ -29,4 +29,5 @@ jobs:
         uses: chainguard-dev/actions/apko-build@main
         with:
           config: stb-green.yaml
+          archs: x86_64
           tag: ghcr.io/ahmetak4n/security-tool-box:stb-green
