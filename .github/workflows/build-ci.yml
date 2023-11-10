@@ -54,7 +54,6 @@ jobs:
         uses: distroless/actions/apko-publish@main
         with:
           config: stb-green.yaml
-          archs: x86_64
           tag: ghcr.io/ahmetak4n/security-tool-box:stb-green-delete-me
       
             #      - name: red build and push image
