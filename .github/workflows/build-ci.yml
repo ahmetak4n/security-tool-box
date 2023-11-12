@@ -29,7 +29,7 @@ jobs:
           docker run --rm \
             -v $PWD:${{ github.workspace }} \
             -v /tmp:/tmp \
-            ghcr.io/wolfi-dev/apko:latest build ghcr.io/ahmetak4n/security-tool-box/stb-green-${{ github.sha }} stb-green-output.tar
+            ghcr.io/wolfi-dev/apko:latest build stb-green.yaml ghcr.io/ahmetak4n/security-tool-box/stb-green-${{ github.sha }} stb-green-output.tar
           docker load < stb-green-output.tar
           docker push ghcr.io/ahmetak4n/security-tool-box/stb-green-${{ github.sha }}
 
