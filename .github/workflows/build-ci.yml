@@ -25,17 +25,9 @@ jobs:
       - name: checkot repository
         uses: actions/checkout@v3
       
-      - name: apko build
-        shell: bash
-        run : |
-          docker run -i --rm --entrypoint /bin/sh \
-          -v $PWD:${{ github.workspace }} --workdir ${{ github.workspace }} \
-        ghcr.io/wolfi-dev/apko:latest build stb-green.yaml stb-green:test stb-green.tar
-
-        #      - name: green build and push image
-        #        uses: distroless/actions/apko-snapshot@main
-        #        with:
-        #          config: stb-green.yaml
-        #          archs: amd64
-        #          base-tag: ghcr.io/ahmetak4n/security-tool-box 
-        #          target-tag: stb-green-${{ github.sha }}
+      - name: green build image
+        uses: distroless/actions/apko-build@main
+          with:
+            config: stb-green.yaml
+            archs: amd64, arm64, x86_64
+            base-tag: ghcr.io/ahmetak4n/security-tool-box/stb-green-${{ github.sha }} 
