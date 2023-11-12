@@ -30,4 +30,4 @@ jobs:
         with:
           config: stb-green.yaml
           archs: amd64, arm64, x86_64
-          base-tag: ghcr.io/ahmetak4n/security-tool-box/stb-green-${{ github.sha }} 
+          tag: ghcr.io/ahmetak4n/security-tool-box/stb-green-${{ github.sha }} 
