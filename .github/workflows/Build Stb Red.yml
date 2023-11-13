@@ -1,0 +1,44 @@
+name: Build 
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "stb-red.yaml"
+  
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "stb-red.yaml"
+    
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - name: Checkot Repository
+        uses: actions/checkout@v3
+
+      - name: Login GCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Apko Build & Docker Push
+        run: |
+          docker run --rm \
+            -v $PWD:${{ github.workspace }} \
+            -w ${{ github.workspace }} \
+            ghcr.io/wolfi-dev/apko:latest build stb-red.yaml --arch arm64,amd64,x86_64 ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }} stb-red-output.tar
+          docker load < stb-red-output.tar
+          docker push --all-tags ghcr.io/ahmetak4n/security-tool-box 

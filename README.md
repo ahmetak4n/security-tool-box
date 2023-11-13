@@ -11,6 +11,8 @@ It is useful for security testing. Small and easy to use. You just need docker t
   - Python 3.11
 - **sast**
   - semgrep
+- **iac**
+  - checkov
 - **sbom**
   - Syft
 - **k8s & container security**
@@ -32,9 +34,11 @@ It is useful for security testing. Small and easy to use. You just need docker t
 docker pull ghcr.io/ahmetak4n/security-tool-box:stb-red-$TAG
 ```
 ```bash
-docker run --privileged --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4n/security-tool-box:stb-red /bin/bash
+docker run --privileged --network=host --rm -it -v "${PWD}:${PWD}" -w "${PWD}" ghcr.io/ahmetak4n/security-tool-box:stb-red /bin/bash
 ```
 > :exclamation: `--privileged` flag is required for nmap
+
+> :exclamation: `--network=host` flag is required for scan any address in local
 
 # stb green 
 It is a sub set of STB RED, but it more small and focused application security. You can find bunch of tool that useful for DevSecOps. It contains following tools:
@@ -44,6 +48,8 @@ It is a sub set of STB RED, but it more small and focused application security. 
   - Python 3.11
 - **sast**
   - semgrep
+- **iac**
+  - checkov
 - **sbom**
   - Syft
 - **k8s & container security**
