@@ -37,12 +37,12 @@ jobs:
           docker run --rm \
             -v $PWD:${{ github.workspace }} \
             -w ${{ github.workspace }} \
-            ghcr.io/wolfi-dev/apko:latest build stb-green.yaml --arch arm64,amd64 ghcr.io/ahmetak4n/security-tool-box:stb-green-${{github.ref_name}} stb-green-output.tar
+            ghcr.io/wolfi-dev/apko:latest build stb-green.yaml --arch arm64,amd64 ghcr.io/ahmetak4n/security-tool-box:stb-green-demo stb-green-output.tar
           docker load < stb-green-output.tar
-          docker tag  ghcr.io/ahmetak4n/security-tool-box:stb-green-${{github.ref_name}}-amd64 ghcr.io/ahmetak4n/security-tool-box:stb-green-${{github.ref_name}}  
+          docker tag  ghcr.io/ahmetak4n/security-tool-box:stb-green-${{github.ref_name}}-amd64 ghcr.io/ahmetak4n/security-tool-box:stb-green-demo  
           docker push --all-tags ghcr.io/ahmetak4n/security-tool-box
-          DIGEST=(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-${{github.ref_name}})
-          DIGEST=(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-${{github.ref_name}})-arm64
+          DIGEST=(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-demo)
+          DIGEST=(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-demo-arm64)
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY ${DIGEST}
         env:
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
