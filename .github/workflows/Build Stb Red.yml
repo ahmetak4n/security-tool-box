@@ -39,6 +39,7 @@ jobs:
           docker run --rm \
             -v $PWD:${{ github.workspace }} \
             -w ${{ github.workspace }} \
-            ghcr.io/wolfi-dev/apko:latest build stb-red.yaml --arch arm64,amd64,x86_64 ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }} stb-red-output.tar
+            ghcr.io/wolfi-dev/apko:latest build stb-red.yaml --arch arm64,amd64 ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }} stb-red-output.tar
           docker load < stb-red-output.tar
-          docker push --all-tags ghcr.io/ahmetak4n/security-tool-box 
+          docker tag ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }}-amd64 ghcr.io/ahmetak4n/security-tool-box:stb-red-${{ github.sha }} 
+          docker push --all-tags ghcr.io/ahmetak4n/security-tool-box
