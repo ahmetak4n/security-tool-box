@@ -40,9 +40,9 @@ jobs:
             ghcr.io/wolfi-dev/apko:latest build stb-green.yaml ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }} stb-green-output.tar --arch amd64
           
           docker load < stb-green-output.tar 
-          docker push ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }}
+          docker push ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }}-amd64
           
-          DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }})
+          DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-${{ github.sha }}-amd64)
           
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${DIGEST}"
         env:
