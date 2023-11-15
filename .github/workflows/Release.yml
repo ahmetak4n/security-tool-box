@@ -41,8 +41,8 @@ jobs:
           docker load < stb-green-output.tar
           docker tag  ghcr.io/ahmetak4n/security-tool-box:stb-green-demo-amd64 ghcr.io/ahmetak4n/security-tool-box:stb-green-demo  
           docker push --all-tags ghcr.io/ahmetak4n/security-tool-box
-          DIGEST=(docker inspect --format='{{.RepoDigests}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-demo)
-          DIGEST=(docker inspect --format='{{.RepoDigests}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-demo-arm64)
+          DIGEST=$(docker inspect --format='{{.RepoDigests}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-demo)
+          DIGEST=$(docker inspect --format='{{.RepoDigests}}' ghcr.io/ahmetak4n/security-tool-box:stb-green-demo-arm64)
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${DIGEST}"
         env:
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
