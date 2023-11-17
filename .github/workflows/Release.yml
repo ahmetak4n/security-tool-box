@@ -66,3 +66,6 @@ jobs:
 
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${DIGEST_RED_AMD64}"
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${DIGEST_RED_ARM64}"
+        env:
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
